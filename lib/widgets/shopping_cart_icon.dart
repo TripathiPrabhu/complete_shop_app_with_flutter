@@ -1,39 +1,51 @@
+import 'package:complete_shop_app_with_flutter/providers/card_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CartIconButton extends StatelessWidget {
-  const CartIconButton({Key? key}) : super(key: key);
+  int providerCount = CartProvider().count;
 
   @override
   Widget build(BuildContext context) {
-    return  Stack(
-      children: [
-        IconButton(onPressed: () {  },
-          icon: Icon(Icons.shopping_cart,
-            size: 35,
-          ),
-        ),
-        Positioned(
-          top: 4,
-          right: 6,
-          child: Container(
-            height: 22,
-            width: 22,
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              color: Colors.purple,
+    return Consumer<CartProvider>(
+      builder: (context, provider, child) {
+        return Stack(
+          children: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.shopping_cart,
+                size: 40,
+              ),
             ),
-            child: const Center(
-                child: Text(
-                  
-                  "12",
-                  style: TextStyle(
-                    fontSize: 11,
-                    fontWeight: FontWeight.bold,
-                  ),
-                )),
-          ),
-        ),
-      ],
+            Consumer<CartProvider>(
+              builder: (context, CartProvider, child) {
+                return Positioned(
+                    top: 3,
+                    right: 3,
+                    child: CartProvider.count>=1?
+                    Container(
+                      height: 22,
+                      width: 22,
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.red,
+                      ),
+                      child: Center(
+                          child: Text(
+                        "${CartProvider.count}",
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ))
+                  ):SizedBox());
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

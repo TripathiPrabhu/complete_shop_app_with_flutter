@@ -1,57 +1,65 @@
 import 'package:complete_shop_app_with_flutter/Screens/product_details.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../models/product_model.dart';
+import '../providers/card_provider.dart';
 
-class Product extends StatelessWidget {
+class Product extends StatefulWidget {
   Product({Key? key}) : super(key: key);
+
+  @override
+  State<Product> createState() => _ProductState();
+}
+
+class _ProductState extends State<Product> {
   List<ProductModel> ProductList = [
     ProductModel(
         imgUrl:
-            'https://lmsin.net/cdn-cgi/image/h=831,w=615,q=60,fit=cover/https://aaeff43fe32172cbcecc-ae2a4e9a8cbc330ede5588dedf56886e.lmsin.net/max/1000011630878-Red-RED-1000011630878_05-2100.jpg',
+        'https://lmsin.net/cdn-cgi/image/h=831,w=615,q=60,fit=cover/https://aaeff43fe32172cbcecc-ae2a4e9a8cbc330ede5588dedf56886e.lmsin.net/max/1000011630878-Red-RED-1000011630878_05-2100.jpg',
         title: 'Red top-Back',
         description:
-            'An ideal pick for your casual look, this t-shirt is designed with a round neckline, half sleeves, and graphic prints',
+        'An ideal pick for your casual look, this t-shirt is designed with a round neckline, half sleeves, and graphic prints',
         price: 399,
         isFavorite: false),
     ProductModel(
         imgUrl:
-            'https://lmsin.net/cdn-cgi/image/h=831,w=615,q=60,fit=cover/https://aaeff43fe32172cbcecc-ae2a4e9a8cbc330ede5588dedf56886e.lmsin.net/max/1000011872177-Yellow-YELLOW-1000011872177_03-2100.jpg',
+        'https://lmsin.net/cdn-cgi/image/h=831,w=615,q=60,fit=cover/https://aaeff43fe32172cbcecc-ae2a4e9a8cbc330ede5588dedf56886e.lmsin.net/max/1000011872177-Yellow-YELLOW-1000011872177_03-2100.jpg',
         title: 'Yellow top T-Shirt',
         description:
-            'An ideal pick for your casual look, this t-shirt is designed with a round neckline, half sleeves, and graphic prints',
+        'An ideal pick for your casual look, this t-shirt is designed with a round neckline, half sleeves, and graphic prints',
         price: 299,
         isFavorite: false),
     ProductModel(
         imgUrl:
-            'https://lmsin.net/cdn-cgi/image/h=831,w=615,q=60,fit=cover/https://aaeff43fe32172cbcecc-ae2a4e9a8cbc330ede5588dedf56886e.lmsin.net/max/1000011745219-Brown-BROWN-1000011745219_01-2100.jpg',
+        'https://lmsin.net/cdn-cgi/image/h=831,w=615,q=60,fit=cover/https://aaeff43fe32172cbcecc-ae2a4e9a8cbc330ede5588dedf56886e.lmsin.net/max/1000011745219-Brown-BROWN-1000011745219_01-2100.jpg',
         title: 'Grey Sleeves T-shirt',
         description:
-            'An ideal pick for your casual look, this t-shirt is designed with a round neckline, half sleeves, and graphic prints',
+        'An ideal pick for your casual look, this t-shirt is designed with a round neckline, half sleeves, and graphic prints',
         price: 159,
         isFavorite: false),
     ProductModel(
         imgUrl:
-            'https://lmsin.net/cdn-cgi/image/h=831,w=615,q=60,fit=cover/https://aaeff43fe32172cbcecc-ae2a4e9a8cbc330ede5588dedf56886e.lmsin.net/max/1000011816415-Purple-LILAC-1000011816415_03-2100.jpg',
+        'https://lmsin.net/cdn-cgi/image/h=831,w=615,q=60,fit=cover/https://aaeff43fe32172cbcecc-ae2a4e9a8cbc330ede5588dedf56886e.lmsin.net/max/1000011816415-Purple-LILAC-1000011816415_03-2100.jpg',
         title: 'blue Sleeves T-shirt',
         description:
-            'An ideal pick for your casual look, this t-shirt is designed with a round neckline, half sleeves, and graphic prints',
+        'An ideal pick for your casual look, this t-shirt is designed with a round neckline, half sleeves, and graphic prints',
         price: 149,
         isFavorite: false),
     ProductModel(
         imgUrl:
-            'https://lmsin.net/cdn-cgi/image/h=831,w=615,q=60,fit=cover/https://aaeff43fe32172cbcecc-ae2a4e9a8cbc330ede5588dedf56886e.lmsin.net/max/1000011939495-Beige-OATMARL-1000011939495_03-2100.jpg',
+        'https://lmsin.net/cdn-cgi/image/h=831,w=615,q=60,fit=cover/https://aaeff43fe32172cbcecc-ae2a4e9a8cbc330ede5588dedf56886e.lmsin.net/max/1000011939495-Beige-OATMARL-1000011939495_03-2100.jpg',
         title: 'Round Neck T-shirt',
         description:
-            'An ideal pick for your casual look, this t-shirt is designed with a round neckline, half sleeves, and graphic prints',
+        'An ideal pick for your casual look, this t-shirt is designed with a round neckline, half sleeves, and graphic prints',
         price: 399,
         isFavorite: false),
     ProductModel(
         imgUrl:
-            'https://lmsin.net/cdn-cgi/image/h=831,w=615,q=60,fit=cover/https://aaeff43fe32172cbcecc-ae2a4e9a8cbc330ede5588dedf56886e.lmsin.net/max/1000011630878-Red-RED-1000011630878_04-2100.jpg',
+        'https://lmsin.net/cdn-cgi/image/h=831,w=615,q=60,fit=cover/https://aaeff43fe32172cbcecc-ae2a4e9a8cbc330ede5588dedf56886e.lmsin.net/max/1000011630878-Red-RED-1000011630878_04-2100.jpg',
         title: 'Printed T-shirt',
         description:
-            'An ideal pick for your casual look, this t-shirt is designed with a round neckline, half sleeves, and graphic prints',
+        'An ideal pick for your casual look, this t-shirt is designed with a round neckline, half sleeves, and graphic prints',
         price: 399,
         isFavorite: false),
   ];
@@ -72,12 +80,24 @@ class Product extends StatelessWidget {
             child: GridTile(
               footer: GridTileBar(
                 backgroundColor: Colors.black54,
-                leading: IconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.favorite_border,
-                    color: Colors.white,
-                  ),
+                leading: Consumer<CartProvider>(
+                  builder: (context, CartProvider, child) {
+                    return IconButton(
+                      onPressed: () {
+                        ProductList[index].isFavorite = !ProductList[index].isFavorite;
+                        setState(() {
+
+                        });
+                      },
+                      icon: ProductList[index].isFavorite?Icon(
+                          Icons.favorite,
+                        color: Colors.redAccent
+                      ):Icon(
+                          Icons.favorite_border,
+                          color: Colors.white
+                      ),
+                    );
+                  },
                 ),
                 title: Text(
                   '${ProductList[index].title}',
@@ -94,7 +114,8 @@ class Product extends StatelessWidget {
                       fontSize: 15),
                 ),
                 trailing: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                  },
                   icon: Icon(
                     Icons.shopping_cart_outlined,
                     color: Colors.white,
@@ -106,13 +127,14 @@ class Product extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => ProductDetails(
-                        imgUrl: ProductList[index].imgUrl,
-                        title: ProductList[index].title,
-                        description: ProductList[index].description,
-                        price: ProductList[index].price,
+                      builder: (context) =>
+                          ProductDetails(
+                            imgUrl: ProductList[index].imgUrl,
+                            title: ProductList[index].title,
+                            description: ProductList[index].description,
+                            price: ProductList[index].price,
 
-                      ),
+                          ),
                     ),
                   );
                 },

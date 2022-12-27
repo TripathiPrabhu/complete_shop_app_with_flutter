@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../providers/card_provider.dart';
 import '../widgets/product_detail_bottom_bar.dart';
-import '../widgets/products.dart';
 import '../widgets/shopping_cart_icon.dart';
 
 class ProductDetails extends StatelessWidget {
@@ -52,33 +53,82 @@ class ProductDetails extends StatelessWidget {
                   ),
                 ),
               ), //image end here
-              Text('\$ ${price}',
-                  style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.indigo,
-                      letterSpacing: 2)), //price end here
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    '\$ ${price}',
+                    style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.indigo,
+                        letterSpacing: 2),
+                  ),
+                  CartIconButton()
+                ],
+              ),
+              //price end here
+
               SizedBox(
                 height: 10,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    '${title}',
-                    style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                        letterSpacing: 2),
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.shopping_cart_outlined,
-                      size: 35,
-                      color: Colors.pink,
+                  Expanded(
+                    child: Text(
+                      '${title}',
+                      style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                          letterSpacing: 2),
                     ),
+                  ),
+                  // ClipRRect(
+                  //   borderRadius: BorderRadius.circular(15),
+                    // child:
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: Colors.black.withOpacity(0.1),
+                      ),
+
+                      child: Center(
+                      child:
+                      Consumer<CartProvider>(
+                        builder: (context, CartProvider, child) {
+                          return Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              IconButton(
+                                iconSize:40,
+                                onPressed: () {
+                                  CartProvider.Decrese(0);
+                                },
+                                icon: Icon(
+                                  Icons.remove_circle,
+                                  color: CartProvider.count<=0?Colors.black54:Colors.deepOrange,
+                                ),
+                              ),
+
+                              IconButton(
+                                iconSize:40,
+                                onPressed: () {
+                                  CartProvider.Increase(0);
+                                },
+                                icon: Icon(
+                                  Icons.add_circle_rounded,
+                                  color: Colors.deepOrange,
+                                ),
+                              ),
+                            ],
+                          );
+                        },
+                      ),
+                    ),
+                  // ),
                   ),
                   //cart Icon end here____________
                 ],

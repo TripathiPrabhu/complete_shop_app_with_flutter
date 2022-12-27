@@ -1,11 +1,6 @@
 import 'package:complete_shop_app_with_flutter/providers/card_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../providers/card_provider.dart';
-
-import '../providers/card_provider.dart';
-import '../providers/card_provider.dart';
-import '../providers/card_provider.dart';
 
 
 class ProductDetailBottomBar extends StatelessWidget {
@@ -26,7 +21,7 @@ class ProductDetailBottomBar extends StatelessWidget {
               height: 50,
               minWidth: 160,
               color: Color(0XFFFF9F00),
-              child: Text('Buy Now',
+              child: Text('My Cart',
                 style: TextStyle(fontSize: 24,
                     fontWeight: FontWeight.w700,
                     color: Colors.white,
@@ -43,7 +38,7 @@ class ProductDetailBottomBar extends StatelessWidget {
                 return MaterialButton(
                   onPressed: () {
                     CartProvider.Increase(0);
-                    print(CartProvider.count);
+                   print(CartProvider.count);
                   },
                   height: 50,
                   minWidth: 160,
